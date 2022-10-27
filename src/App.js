@@ -11,9 +11,9 @@ class App extends React.Component {
     this.state = {
       cardName: '',
       cardDescription: '',
-      cardAttr1: '',
-      cardAttr2: '',
-      cardAttr3: '',
+      cardAttr1: 0,
+      cardAttr2: 0,
+      cardAttr3: 0,
       cardImage: '',
       cardRare: 'normal',
       cardTrunfo: false,
@@ -59,7 +59,13 @@ class App extends React.Component {
     });
   }
 
+  click = () => {
+    this.setState({ hasTrunfo: true });
+  };
+
   onSaveButtonClick = () => {
+    const { cardTrunfo } = this.state;
+    if (cardTrunfo) this.click();
     this.setState((prevState) => ({
       salvarCartao: [...prevState.salvarCartao],
       cardName: '',
