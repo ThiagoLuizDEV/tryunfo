@@ -95,7 +95,7 @@ class Form extends React.Component {
         {hasTrunfo
           ? <p>Você já tem um Super Trunfo em seu baralho</p>
           : (
-            <labe htmlFor="hasTrunfo">
+            <labe>
               Card Trunfo:
               <input
                 checked={ cardTrunfo }

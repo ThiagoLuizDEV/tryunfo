@@ -64,10 +64,31 @@ class App extends React.Component {
   };
 
   onSaveButtonClick = () => {
-    const { cardTrunfo } = this.state;
+    const { cardTrunfo,
+      cardName,
+      cardDescription,
+      cardAttr1,
+      cardAttr2,
+      cardAttr3,
+      cardImage,
+      cardRare,
+      isSaveButtonDisabled,
+    } = this.state;
     if (cardTrunfo) this.click();
+
     this.setState((prevState) => ({
-      salvarCartao: [...prevState.salvarCartao],
+      salvarCartao: [...prevState.salvarCartao, {
+        cardName,
+        cardDescription,
+        cardAttr1,
+        cardAttr2,
+        cardAttr3,
+        cardImage,
+        cardRare,
+        isSaveButtonDisabled,
+      }],
+    }));
+    this.setState(() => ({
       cardName: '',
       cardDescription: '',
       cardAttr1: 0,
@@ -91,6 +112,7 @@ class App extends React.Component {
       cardTrunfo,
       hasTrunfo,
       isSaveButtonDisabled,
+      salvarCartao,
     } = this.state;
 
     return (
@@ -120,6 +142,21 @@ class App extends React.Component {
           cardRare={ cardRare }
           cardTrunfo={ cardTrunfo }
         />
+        <div>
+          {salvarCartao.map((cartao) => (
+            <Card
+              key={ cartao.cardName }
+              cardName={ cartao.cardName }
+              cardDescription={ cartao.cardDescription }
+              cardAttr1={ cartao.cardAttr1 }
+              cardAttr2={ cartao.cardAttr2 }
+              cardAttr3={ cartao.cardAttr3 }
+              cardImage={ cartao.cardImage }
+              cardRare={ cartao.cardRare }
+              cardTrunfo={ cartao.cardTrunfo }
+            />
+          ))}
+        </div>
       </div>
     );
   }
