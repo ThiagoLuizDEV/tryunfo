@@ -15,10 +15,11 @@ class App extends React.Component {
       cardAttr2: '',
       cardAttr3: '',
       cardImage: '',
-      cardRare: '',
+      cardRare: 'normal',
       cardTrunfo: false,
       hasTrunfo: false,
       isSaveButtonDisabled: true,
+      salvarCartao: [],
     };
   }
 
@@ -42,13 +43,13 @@ class App extends React.Component {
       const atributomax = 90;
       const total = Number(cardAttr1) + Number(cardAttr2) + Number(cardAttr3);
 
-      const attt1MaxCheck = (cardAttr1 <= atributomax
+      const atributo1 = (cardAttr1 <= atributomax
       && cardAttr1 >= 0);
-      const attt2MaxCheck = (cardAttr2 <= atributomax
+      const atributo2 = (cardAttr2 <= atributomax
       && cardAttr2 >= 0);
-      const attt3MaxCheck = (cardAttr3 <= atributomax
+      const atributo3 = (cardAttr3 <= atributomax
       && cardAttr3 >= 0);
-      const ChecandoTudo = attt1MaxCheck && attt2MaxCheck && attt3MaxCheck;
+      const ChecandoTudo = atributo1 && atributo2 && atributo3;
 
       const checarTexto = cardName && cardDescription && cardImage && cardRare;
       const checarAtributo = (total <= pontosmax);
@@ -57,6 +58,20 @@ class App extends React.Component {
         && checarTexto) });
     });
   }
+
+  onSaveButtonClick = () => {
+    this.setState((prevState) => ({
+      salvarCartao: [...prevState.salvarCartao],
+      cardName: '',
+      cardDescription: '',
+      cardAttr1: 0,
+      cardAttr2: 0,
+      cardAttr3: 0,
+      cardImage: '',
+      cardRare: 'normal',
+      isSaveButtonDisabled: true,
+    }));
+  };
 
   render() {
     const {
@@ -85,6 +100,7 @@ class App extends React.Component {
           cardRare={ cardRare }
           cardTrunfo={ cardTrunfo }
           hasTrunfo={ hasTrunfo }
+          onSaveButtonClick={ this.onSaveButtonClick }
           isSaveButtonDisabled={ isSaveButtonDisabled }
           onInputChange={ this.onInputChange }
         />

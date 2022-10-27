@@ -17,7 +17,6 @@ class Form extends React.Component {
       onInputChange,
       onSaveButtonClick,
     } = this.props;
-    console.log(hasTrunfo);
     return (
       <form>
         <labe>
@@ -96,6 +95,7 @@ class Form extends React.Component {
         <labe>
           Super Trunfo:
           <input
+            hasTrunfo={ hasTrunfo }
             checked={ cardTrunfo }
             onChange={ onInputChange }
             type="checkbox"
